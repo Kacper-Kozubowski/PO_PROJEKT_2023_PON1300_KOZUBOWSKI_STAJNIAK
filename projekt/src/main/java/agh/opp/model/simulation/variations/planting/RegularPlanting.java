@@ -51,7 +51,6 @@ public class RegularPlanting extends AbstractPlanting {
                 addPlant(freeNormal.get(toNormal));
                 toNormal++;
             } else {
-                System.err.println("Map is full");
                 return;
             }
         }

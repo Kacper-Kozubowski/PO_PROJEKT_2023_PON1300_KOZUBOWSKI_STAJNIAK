@@ -26,7 +26,6 @@ public class RegularMap extends AbstractMap {
             animal.updateOrientation(newOrientation);
             addAnimal(animal);
         } catch (OutOfBoundaryException e) {
-            System.err.println("Animal attempted to move out of bounds. Reversing direction.");
             animal.updateOrientation(newOrientation.opposite());
         }
     }
@@ -37,7 +36,6 @@ public class RegularMap extends AbstractMap {
             Vector2d normalizedPosition = boundary.normalizePosition(position);
             return Optional.ofNullable(plants.get(normalizedPosition));
         } catch (OutOfBoundaryException e) {
-            System.err.println("Position is out of bounds.");
             return Optional.empty();
         }
     }
