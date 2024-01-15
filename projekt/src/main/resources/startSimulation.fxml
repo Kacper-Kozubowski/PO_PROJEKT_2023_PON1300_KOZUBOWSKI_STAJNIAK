@@ -4,81 +4,122 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            minHeight="800" minWidth="300" stylesheets="simulation.css"
+            minHeight="550" minWidth="400" stylesheets="simulation.css"
             fx:controller="agh.opp.presenter.InitializeSimulation">
-    <center>
-        <VBox>
-        <VBox>
-            <Label text="Ustawienia mapy:"/>
-        <HBox>
-            <VBox>
-                <Label text="Typ mapy:"/>
-                <Label text="Szerokość:" />
-                <Label text="Wysokość:"/>
-            </VBox>
-            <VBox>
-                <ComboBox fx:id="mapType" promptText="Wybierz typ" />
-                <Spinner fx:id="widthSpinner" min="1" max="100" initialValue="10" editable="true"/>
-                <Spinner fx:id="heightSpinner" min="5" max="100" editable="true"/>
-            </VBox>
-        </HBox>
-        </VBox>
-        <VBox>
-            <Label text="Ustawienia roślin:"/>
-            <HBox>
-                <VBox>
-                    <Label text="Startowa liczba:"/>
-                    <Label text="Energia za zjedzenie:" />
-                    <Label text="Dzienny wzrost:"/>
-                    <Label text="Wariant wzrostu:"/>
-                </VBox>
-                <VBox>
-                    <Spinner fx:id="initialPlantSpinner" min="0" max="10" initialValue="5" editable="true"/>
-                    <Spinner fx:id="plantEnergySpinner" min="1" max="25" initialValue="5" editable="true"/>
-                    <Spinner fx:id="dailyGrowthSpinner" min="0" max="10" initialValue="5" editable="true"/>
-                    <ComboBox fx:id="plantingType" promptText="Wybierz typ" />
-                </VBox>
-            </HBox>
-        </VBox>
-            <VBox>
-                <Label text="Ustawienia zwierzaków:"/>
-                <HBox>
-                    <VBox>
-                        <Label text="Startowa liczba:"/>
-                        <Label text="Startowa energia:" />
-                        <Label text="Energia przy której zwierzak jest najedzony"/>
-                        <Label text="Energia potrzebna do rozmnażania:"/>
-                        <Label text="Minimalna liczba mutacji:"/>
-                        <Label text="Maksymalna liczba mutacji:"/>
-                        <Label text="Wariant mutacji:"/>
-                        <Label text="Długość genomu:"/>
-                        <Label text="Wariant zachowania:"/>
-                    </VBox>
-                    <VBox>
-                        <Spinner fx:id="initialAnimalSpinner" min="1" max="10" initialValue="5" editable="true"/>
-                        <Spinner fx:id="startAnimalEnergySpinner" min="1" max="25" initialValue="5" editable="true"/>
-                        <Spinner fx:id="fullAnimalSpinner" min="1" max="10" initialValue="5" editable="true"/>
-                        <Spinner fx:id="reproductionEnergySpinner" min="1" max="10" initialValue="5" editable="true"/>
-                        <Spinner fx:id="minMutationSpinner" min="0" max="10" initialValue="5" editable="true"/>
-                        <Spinner fx:id="maxMutationSpinner" min="0" max="10" initialValue="5" editable="true"/>
-                        <ComboBox fx:id="mutationType" promptText="Wybierz typ" />
-                        <Spinner fx:id="genomeLengthSpinner" min="1" max="10" initialValue="5" editable="true"/>
-                        <ComboBox fx:id="behaviourType" promptText="Wybierz typ" />
-                    </VBox>
-                </HBox>
-            </VBox>
-        </VBox>
 
+    <center>
+        <ScrollPane prefHeight="600">
+            <BorderPane>
+                <center>
+                    <VBox>
+                        <VBox>
+                            <Label text="Ustawienia mapy:"/>
+                            <GridPane hgap="15" vgap="10">
+                                <VBox.margin>
+                                    <Insets left="50"/>
+                                </VBox.margin>
+
+                                <Label text="Typ mapy:"
+                                       GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+
+                                <Label text="Szerokość:"
+                                       GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+
+                                <Label text="Wysokość:"
+                                       GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+
+                                <ComboBox fx:id="mapType" promptText="Wybierz typ"
+                                          GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                                <Spinner fx:id="widthSpinner" min="1" max="100" initialValue="10" editable="true"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                                <Spinner fx:id="heightSpinner" min="5" max="100" editable="true"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                            </GridPane>
+                        </VBox>
+                        <VBox>
+                            <Label text="Ustawienia roślin:"/>
+
+                            <GridPane hgap="15" vgap="10" >
+                                <VBox.margin>
+                                    <Insets left="50"/>
+                                </VBox.margin>
+
+                                <Label text="Startowa liczba:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                <Label text="Energia za zjedzenie:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                                <Label text="Dzienny wzrost:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                                <Label text="Wariant wzrostu:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+
+                                <Spinner fx:id="initialPlantSpinner" min="0" max="10" initialValue="5" editable="true"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                                <Spinner fx:id="plantEnergySpinner" min="1" max="25" initialValue="5" editable="true"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                <Spinner fx:id="dailyGrowthSpinner" min="0" max="10" initialValue="5" editable="true"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <ComboBox fx:id="plantingType" promptText="Wybierz typ"
+                                          GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+
+                            </GridPane>
+                        </VBox>
+                        <VBox>
+                            <Label text="Ustawienia zwierzaków:"/>
+
+                            <GridPane hgap="15" vgap="10" >
+                                <VBox.margin>
+                                    <Insets left="50"/>
+                                </VBox.margin>
+
+                                <Label text="Startowa liczba:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                                <Label text="Startowa energia:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                                <Label text="Energia przy której zwierzak jest najedzony" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                                <Label text="Energia potrzebna do rozmnażania:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                                <Label text="Minimalna liczba mutacji:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                                <Label text="Maksymalna liczba mutacji:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                                <Label text="Wariant mutacji:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                                <Label text="Długość genomu:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
+                                <Label text="Wariant zachowania:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
+
+                                <Spinner fx:id="initialAnimalSpinner" min="1" max="10" initialValue="5"
+                                         editable="true" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                                <Spinner fx:id="startAnimalEnergySpinner" min="1" max="25" initialValue="5"
+                                         editable="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                <Spinner fx:id="fullAnimalSpinner" min="1" max="10" initialValue="5" editable="true"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <Spinner fx:id="reproductionEnergySpinner" min="1" max="10" initialValue="5"
+                                         editable="true" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                                <Spinner fx:id="minMutationSpinner" min="0" max="10" initialValue="5" editable="true"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                <Spinner fx:id="maxMutationSpinner" min="0" max="10" initialValue="5" editable="true"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                                <ComboBox fx:id="mutationType" promptText="Wybierz typ"
+                                          GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                                <Spinner fx:id="genomeLengthSpinner" min="1" max="10" initialValue="5" editable="true"
+                                         GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                                <ComboBox fx:id="behaviourType" promptText="Wybierz typ"
+                                          GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+                            </GridPane>
+                        </VBox>
+                    </VBox>
+
+                </center>
+                <bottom>
+                    <VBox alignment="CENTER">
+                        <Button text="Create Simulation" onAction="#initializeSimulation"/>
+                    </VBox>
+                </bottom>
+            </BorderPane>
+        </ScrollPane>
     </center>
-    <bottom>
-        <VBox alignment="CENTER">
-            <Button text="Create Simulation" onAction="#initializeSimulation" />
-        </VBox>
-    </bottom>
 </BorderPane>

@@ -26,4 +26,6 @@ public interface WorldMap {
 
     Optional<WorldElement> elementAt(Vector2d position);
     int animalsAt(Vector2d position);
+
+    ArrayList<Animal> getAnimalsAt(Vector2d position);
 }
