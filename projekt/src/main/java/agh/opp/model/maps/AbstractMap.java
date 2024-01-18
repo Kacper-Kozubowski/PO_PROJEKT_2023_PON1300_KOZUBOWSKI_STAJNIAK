@@ -79,7 +79,9 @@ public abstract class AbstractMap implements WorldMap {
             .stream()
             .flatMap(Set::stream).toList();
     }
-
+    public ArrayList<Animal> getAnimalsAt(Vector2d position) {
+        return new ArrayList<>(animals.get(position));
+    }
     @Override
     public List<Animal> hierarchy(Vector2d position){
         return animals.get(position).stream().sorted(Comparator

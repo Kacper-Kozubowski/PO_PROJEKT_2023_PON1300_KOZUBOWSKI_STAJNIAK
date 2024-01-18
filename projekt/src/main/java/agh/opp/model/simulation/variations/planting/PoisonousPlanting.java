@@ -40,7 +40,6 @@ public class PoisonousPlanting extends AbstractPlanting {
                     map.addPlant(plant);
                 }
             } else {
-                System.err.println("Map is full");
                 return;
             }
         }
