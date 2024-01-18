@@ -52,11 +52,11 @@ public abstract class AbstractReproduction implements ReproductionController {
             genes = makeNewGenotype(animal2, geneAmount2, animal1, geneAmount1);
         }
 
-        animal1.newChild(reproductionEnergy);
-        animal2.newChild(reproductionEnergy);
-
         Animal animal = createNewAnimal(genes, animal1.getPosition(), reproductionEnergy * 2, animalsTotal++);
         addAnimal(animal);
+
+        animal1.newChild(reproductionEnergy, animal);
+        animal2.newChild(reproductionEnergy, animal);
     }
 
     private synchronized void addAnimal(Animal animal) {
@@ -97,5 +97,6 @@ public abstract class AbstractReproduction implements ReproductionController {
         for (Animal animal : newAnimals) {
             map.addAnimal(animal);
         }
+        newAnimals.clear();
     }
 }

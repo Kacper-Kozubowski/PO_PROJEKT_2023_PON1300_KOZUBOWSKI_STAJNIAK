@@ -8,12 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            minHeight="700" minWidth="700" stylesheets="simulation.css"
+            minHeight="700" minWidth="900" stylesheets="simulation.css"
             fx:controller="agh.opp.presenter.SimulationPresenter">
     <top>
         <BorderPane>
+            <padding>
+                <Insets top="20" right="20" bottom="40" left="20"/>
+            </padding>
             <left>
                 <HBox>
                     <Button fx:id="statisticsButton" text="Statystyki" onAction="#onStatisticsClicked"/>
@@ -54,6 +58,9 @@
                 <Label text="Średni poziom enegrii: " GridPane.columnIndex="0" GridPane.rowIndex="4"/>
                 <Label text="Średnia długość życia: " GridPane.columnIndex="0" GridPane.rowIndex="5"/>
                 <Label text="Średnia liczba potomstwa: " GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                <Button fx:id="showMostCommonGenome" text="Pokaż dominujący genotyp" alignment="CENTER" textAlignment="CENTER"
+                        wrapText="true" style="-fx-font-size: 10; -fx-pref-height: 38; -fx-pref-width: 95" onAction="#onShowMostCommonGenomeClicked"
+                        GridPane.columnIndex="0" GridPane.rowIndex="7"/>
 
                 <Label fx:id="animalPopulationLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                 <Label fx:id="plantPopulationLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
@@ -66,10 +73,15 @@
         </VBox>
     </left>
     <right>
+        <VBox alignment="CENTER_LEFT">
         <BorderPane>
             <top>
-                <VBox>
-                    <ComboBox fx:id="partyContentsBox" value="one"/>
+                <VBox alignment="CENTER">
+                    <ComboBox fx:id="partyContentsBox" onAction="#onPartyContentSelected" visible="false"/>
+                    <HBox style="-fx-font-size: 14">
+                        <Label fx:id="followedAnimalTextLabel" text="Śledzony zwierzak: " visible="false"/>
+                        <Label fx:id="followedAnimalLabel" visible="false"/>
+                    </HBox>
                 </VBox>
             </top>
             <center>
@@ -87,7 +99,7 @@
                         <Label fx:id="genomeLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                         <Label fx:id="currentGeneLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                         <Label fx:id="energyLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <Label fx:id="eatenPlantsLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label fx:id="plantsEatenLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                         <Label fx:id="childrenLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                         <Label fx:id="descendantsLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
                         <Label fx:id="ageLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
@@ -95,5 +107,6 @@
                 </VBox>
             </center>
         </BorderPane>
+        </VBox>
     </right>
 </BorderPane>

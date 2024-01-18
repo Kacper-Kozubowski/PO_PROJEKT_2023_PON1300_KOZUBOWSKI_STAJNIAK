@@ -6,6 +6,8 @@ public interface Genome{
 
     int getCurrentGene();
 
+    int getCurrentGeneIndex();
+
     List<Integer> getLeftGenes(int n);
 
     List<Integer> getRightGenes(int n);

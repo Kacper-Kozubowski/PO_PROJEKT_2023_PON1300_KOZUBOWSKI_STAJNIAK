@@ -5,14 +5,9 @@ import agh.opp.model.elements.Plant;
 import agh.opp.model.tools.Vector2d;
 import agh.opp.model.tools.interfaces.*;
 import javafx.application.Platform;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.*;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -30,9 +25,10 @@ public class Simulation implements Runnable {
     private IntegerProperty animalPopulation = new SimpleIntegerProperty();
     private IntegerProperty plantPopulation = new SimpleIntegerProperty();
     private IntegerProperty emptySquares = new SimpleIntegerProperty();
-    private IntegerProperty averageEnegry = new SimpleIntegerProperty();
-    private IntegerProperty averageLifespan = new SimpleIntegerProperty();
-    private IntegerProperty averageOffspring = new SimpleIntegerProperty();
+    private ObjectProperty<Genome> mostCommonGenome = new SimpleObjectProperty<>();
+    private FloatProperty averageEnegry = new SimpleFloatProperty();
+    private FloatProperty averageLifespan = new SimpleFloatProperty();
+    private FloatProperty averageOffspring = new SimpleFloatProperty();
     private int deadAnimals = 0;
 
 
@@ -108,8 +104,12 @@ public class Simulation implements Runnable {
     public void updateStatistics() {
         int animalPopulation = 0;
         int offspringCount = 0;
-        int totalLifeSpan = averageLifespan.get() * deadAnimals;
+        float totalLifeSpan = averageLifespan.get() * deadAnimals;
         int totalEnergy = 0;
+        Map<String, Integer> genomesMap = new HashMap<>();
+        Genome mostCommonGenome = null;
+        int mostCommonGenomeCount = 0;
+
         Set<Vector2d> worldElementsPositions = Stream.of(map.getAnimalPositions(), map.getPlants().keySet()).flatMap(Set::stream).collect(Collectors.toSet());
 
         for (Animal animal: map.getAnimals()) {
@@ -121,22 +121,55 @@ public class Simulation implements Runnable {
                 totalLifeSpan += animal.getAge();
                 this.deadAnimals++;
             }
+
+            if (genomesMap.containsKey(animal.getGenome().toString())) {
+                int count = genomesMap.get(animal.getGenome().toString());
+                count++;
+                genomesMap.put(animal.getGenome().toString(), count);
+
+                if (count > mostCommonGenomeCount) {
+                    mostCommonGenomeCount = count;
+                    mostCommonGenome = animal.getGenome();
+                }
+            }
+            else {
+                genomesMap.put(animal.getGenome().toString(), 1);
+                if (mostCommonGenomeCount == 0) {
+                    mostCommonGenomeCount = 1;
+//                    mostCommonGenome = animal.getGenome();
+                }
+            }
         }
 
         this.animalPopulation.set(animalPopulation);
-        this.averageOffspring.set(offspringCount / animalPopulation);
+        this.averageOffspring.set((float) offspringCount / animalPopulation);
         this.plantPopulation.set(map.getPlants().size());
         this.emptySquares.set((map.getWidth() * map.getHeight()) - worldElementsPositions.size());
-        this.averageEnegry.set(totalEnergy / animalPopulation);
-        this.averageLifespan.set(totalLifeSpan / deadAnimals);
+        this.mostCommonGenome.set(mostCommonGenome);
+        this.averageEnegry.set((float) totalEnergy / animalPopulation);
+        if (deadAnimals != 0) {
+            this.averageLifespan.set((float) totalLifeSpan / deadAnimals);
+        }
     }
 
     public IntegerProperty animalPopulationProperty() {return animalPopulation;}
     public IntegerProperty plantPopulationProperty() {return plantPopulation;}
     public IntegerProperty emptySquaresProperty() {return emptySquares;}
-    public IntegerProperty averageEnergyProperty() {return averageEnegry;}
-    public IntegerProperty averageLifespanProperty() {return averageLifespan;}
-    public IntegerProperty averageOffspringProperty() {return averageOffspring;}
+    public ObjectProperty<Genome> mostCommonGenomeProperty() {return mostCommonGenome;}
+    public FloatProperty averageEnergyProperty() {return averageEnegry;}
+    public FloatProperty averageLifespanProperty() {return averageLifespan;}
+    public FloatProperty averageOffspringProperty() {return averageOffspring;}
+
+    public ArrayList<Animal> getAnimalsWithGenome(Genome genome) {
+        ArrayList<Animal> animalsWithGenome = new ArrayList<>();
+        for (Animal animal: map.getAnimals()) {
+            if (genome.toString().equals(animal.getGenome().toString())) {
+                animalsWithGenome.add(animal);
+            }
+        }
+        return animalsWithGenome;
+    }
+    public WorldMap getMap() {return map;}
 
     public void mapChanged() {
         for (MapChangeListener observer : observers) {

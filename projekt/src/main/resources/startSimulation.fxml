@@ -10,6 +10,8 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.CheckBox?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             minHeight="550" minWidth="400" stylesheets="simulation.css"
@@ -18,6 +20,15 @@
     <center>
         <ScrollPane prefHeight="600">
             <BorderPane>
+                <top>
+                    <VBox alignment="CENTER">
+                        <Label text="Wybierz szablon ustawień:" style="-fx-font-size: 10pt"/>
+                        <HBox alignment="CENTER">
+                            <Button fx:id="deletePresetsButton" text="Delete presets" onAction="#deletePresets" visible="false" managed="false"/>
+                            <ComboBox fx:id="selectPresetBox" value="Default" onAction="#onPresetSelected"/>
+                        </HBox>
+                    </VBox>
+                </top>
                 <center>
                     <VBox>
                         <VBox>
@@ -116,7 +127,14 @@
                 </center>
                 <bottom>
                     <VBox alignment="CENTER">
-                        <Button text="Create Simulation" onAction="#initializeSimulation"/>
+                        <HBox style="-fx-spacing: 50">
+                            <padding>
+                                <Insets top="20" bottom="40"/>
+                            </padding>
+                            <Button fx:id="savePreset" text="Zapisz ustawienia" onAction="#openSavePresetWindow"/>
+                            <Button text="Create Simulation" onAction="#initializeSimulation"/>
+                        </HBox>
+                    <CheckBox fx:id="saveStatistics" text="Zapisz statystyki do pliku"/>
                     </VBox>
                 </bottom>
             </BorderPane>

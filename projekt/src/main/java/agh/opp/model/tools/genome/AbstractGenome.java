@@ -30,7 +30,8 @@ public abstract class AbstractGenome implements Genome {
         nextIndex();
         return gene;
     }
-
+    @Override
+    public int getCurrentGeneIndex() {return index;}
     @Override
     public List<Integer> getLeftGenes(int n) {return genes.subList(0, n);}
 
@@ -41,7 +42,8 @@ public abstract class AbstractGenome implements Genome {
     }
 
     @Override
-    public String toString() {return (genes + " | current ID: " + index);}
+    public String toString() {return genes.toString();}
+//    public String toString() {return (genes + " | current ID: " + index);}
 
     protected abstract void nextIndex();
 }
