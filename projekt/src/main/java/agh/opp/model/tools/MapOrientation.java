@@ -1,5 +1,7 @@
 package agh.opp.model.tools;
 
+import java.util.Random;
+
 public enum MapOrientation {
     NORTH,
     NORTHEAST,
@@ -28,4 +30,10 @@ public enum MapOrientation {
         return values()[index];
     }
     public MapOrientation opposite(){return turnRight(4);}
+
+    private static final Random random = new Random();
+
+    public static MapOrientation generateRandom(){
+        return values()[random.nextInt(values().length)];
+    }
 }
