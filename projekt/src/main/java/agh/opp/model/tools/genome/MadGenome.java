@@ -13,6 +13,7 @@ public class MadGenome extends AbstractGenome {
     @Override
     protected void nextIndex() {
         if (madness()){
+            System.err.println("MADNESS");
             setRandomIndex();
         } else {
             index = (index + 1) % genes.size();
