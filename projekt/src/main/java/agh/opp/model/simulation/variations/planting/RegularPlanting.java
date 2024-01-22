@@ -3,8 +3,10 @@ package agh.opp.model.simulation.variations.planting;
 import agh.opp.model.tools.Randomizer;
 import agh.opp.model.tools.Vector2d;
 import agh.opp.model.tools.interfaces.WorldMap;
+import javafx.scene.paint.Color;
 
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class RegularPlanting extends AbstractPlanting {
@@ -88,5 +90,13 @@ public class RegularPlanting extends AbstractPlanting {
                 return;
             }
         }
+    }
+    @Override
+    public Set<Vector2d> getSpecialArea() {
+        return equatorArea;
+    }
+    @Override
+    public Color getSpecialAreaColor() {
+        return Color.GREEN;
     }
 }
