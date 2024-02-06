@@ -82,6 +82,10 @@ public class SimulationPresenter implements MapChangeListener {
     private Region leftRegion;
     @FXML
     private BorderPane root;
+    @FXML
+    private Button showMostCommonGenome;
+    @FXML
+    private Button showSpecialArea;
     private Stage stage;
     private Simulation simulation;
     private ExecutorService pool;
@@ -138,6 +142,8 @@ public class SimulationPresenter implements MapChangeListener {
         stopButton.setDisable(true);
         stopButton.disableProperty().bind(simulationRunningProperty.not());
         startButton.disableProperty().bind(simulationRunningProperty);
+        showMostCommonGenome.disableProperty().bind(simulationRunningProperty);
+        showSpecialArea.disableProperty().bind(simulationRunningProperty);
     }
 
     @FXML

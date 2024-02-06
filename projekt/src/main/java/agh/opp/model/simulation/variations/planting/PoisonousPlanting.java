@@ -53,8 +53,8 @@ public class PoisonousPlanting extends AbstractPlanting {
         int a = (int) Math.sqrt(size);
 
         Random random = new Random();
-        int x1 = random.nextInt(height - a + 1);
-        int y1 = random.nextInt(width - a + 1);
+        int x1 = random.nextInt(width - a + 1);
+        int y1 = random.nextInt(height - a + 1);
 
         for (int i = 0; i < a; i++) {
             int x = x1 + i;

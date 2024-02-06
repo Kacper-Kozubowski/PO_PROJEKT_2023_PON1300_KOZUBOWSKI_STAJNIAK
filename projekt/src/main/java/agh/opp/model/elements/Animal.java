@@ -128,5 +128,6 @@ public class Animal implements WorldElement {
     @Override
     public String toString(){
         if (dead()) return "X";
-        return getId() + " | "+ getEnergy();}
+        return getId();}
+//        return getId() + " | "+ getEnergy();}
 }
