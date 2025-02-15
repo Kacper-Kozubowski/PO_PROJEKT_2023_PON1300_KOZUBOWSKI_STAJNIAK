@@ -101,7 +101,7 @@
                                 <Label text="Długość genomu:" GridPane.columnIndex="0" GridPane.rowIndex="7"/>
                                 <Label text="Wariant zachowania:" GridPane.columnIndex="0" GridPane.rowIndex="8"/>
 
-                                <Spinner fx:id="initialAnimalSpinner" min="1" max="10" initialValue="5"
+                                <Spinner fx:id="initialAnimalSpinner" min="1" max="30" initialValue="5"
                                          editable="true" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                                 <Spinner fx:id="startAnimalEnergySpinner" min="1" max="25" initialValue="5"
                                          editable="true" GridPane.columnIndex="1" GridPane.rowIndex="1"/>

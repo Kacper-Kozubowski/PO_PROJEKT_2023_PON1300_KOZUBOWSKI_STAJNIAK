@@ -7,7 +7,10 @@ import agh.opp.model.tools.Vector2d;
 import agh.opp.model.tools.interfaces.WorldMap;
 
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import javafx.scene.paint.Color;
 
 public class PoisonousPlanting extends AbstractPlanting {
     private final Randomizer randomizer = new Randomizer();
@@ -50,8 +53,8 @@ public class PoisonousPlanting extends AbstractPlanting {
         int a = (int) Math.sqrt(size);
 
         Random random = new Random();
-        int x1 = random.nextInt(height - a + 1);
-        int y1 = random.nextInt(width - a + 1);
+        int x1 = random.nextInt(width - a + 1);
+        int y1 = random.nextInt(height - a + 1);
 
         for (int i = 0; i < a; i++) {
             int x = x1 + i;
@@ -60,5 +63,13 @@ public class PoisonousPlanting extends AbstractPlanting {
                 poisonousArea.add(new Vector2d(x, y));
             }
         }
+    }
+    @Override
+    public Set<Vector2d> getSpecialArea() {
+        return poisonousArea;
+    }
+    @Override
+    public Color getSpecialAreaColor() {
+        return Color.ORANGE;
     }
 }

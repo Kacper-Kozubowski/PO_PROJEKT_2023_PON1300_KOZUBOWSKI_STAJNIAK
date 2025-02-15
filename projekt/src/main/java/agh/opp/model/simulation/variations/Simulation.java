@@ -52,7 +52,7 @@ public class Simulation implements Runnable {
             Platform.runLater(this::updateStatistics);
             mapChanged();
             try {
-                Thread.sleep(500);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -136,7 +136,6 @@ public class Simulation implements Runnable {
                 genomesMap.put(animal.getGenome().toString(), 1);
                 if (mostCommonGenomeCount == 0) {
                     mostCommonGenomeCount = 1;
-//                    mostCommonGenome = animal.getGenome();
                 }
             }
         }
@@ -175,5 +174,9 @@ public class Simulation implements Runnable {
         for (MapChangeListener observer : observers) {
             observer.mapChanged(map);
         }
+    }
+
+    public PlantingController getPlantingController() {
+        return plantingController;
     }
 }
